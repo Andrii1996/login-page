@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import {Button,
-  CssBaseline,
+import {CssBaseline,
   Link,
   TextField,
   Grid,
@@ -10,26 +9,34 @@ import {Button,
 import { makeStyles } from '@material-ui/core/styles';
 import logo from './img/logo.png';
 import footer from './img/footer.png';
+import saly from './img/saly.png';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(30),
-    marginLeft: theme.spacing(10),
     height: '526px',
-    width: '400px',
+    width: '450px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
     background: 'rgba(254, 254, 254, 1)',
+    boxShadow: '0px 10px 10px rgba(0, 0, 0, 0.25)'
   },
   form: {
     width: '100%',
-    padding: '0 25%',
+    padding: '0 20%',
     textAlign: 'center',
   },
   submit: {
+    width: '212px',
+    height: '48px',
     margin: theme.spacing(3, 0, 2),
+    color: 'white',
+    fontSize: '18px',
+    fontWeight: '500',
+    background: 'linear-gradient(90deg, #FF9146 0%, #FF351B 100%)',
+    borderRadius: '5px',
   },
   logo: {
     width: '849px',
@@ -37,13 +44,12 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '-150px',
   },
   main: {
-    width: '1440px',
+    // maxWidth: '1440px',
     position: 'relative',
     display: 'flex',
     background: '#e5e5e5',
   },
   main_sub: {
-    width: '80%',
     margin: '0 auto',
     display: 'flex',
     zIndex: '1',
@@ -54,10 +60,15 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     position: 'absolute',
     bottom: '0',
-    right: '185px'
+    maxWidth: '1800px',
   },
   footer_img: {
-    width: '1440px',
+    width: '100%',
+  },
+  footer_saly: {
+    position: 'absolute',
+    bottom: '0',
+    marginLeft: '-47%',
   }
 }));
 
@@ -93,19 +104,18 @@ export default function SignIn() {
     }
 
     alert(`Email - ${email}\nPassword - ${password}`);
-
   }
 
   return (
     <div className={classes.main}>
       <div className={classes.main_sub}>
-        <div className={classes.logo}>
+        <Container maxWidth="xl" className={classes.logo}>
             <img className={classes.img} src={logo} alt="main logo"/>
-          </div>
-          <Container component="main" maxWidth="xs">
+          </Container>
+          <Container component="main">
           <CssBaseline />
           <div className={classes.paper}>
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h4">
               Login
             </Typography>
             <form className={classes.form} onSubmit={handleSubmit} noValidate>
@@ -133,14 +143,12 @@ export default function SignIn() {
                 autoComplete="current-password"
               />
               <p className={classes.err}>{passwordErr}</p>
-              <Button
+              <button
                 type="submit"
-                variant="contained"
-                color="primary"
                 className={classes.submit}
               >
                 Log In
-              </Button>
+              </button>
               <Grid container justify="center">
                 <Grid item>
                   <Link href="#" variant="body1">
@@ -159,6 +167,7 @@ export default function SignIn() {
       </div>
       <Container maxWidth="lg" className={classes.footer}>
         <img className={classes.footer_img} src={footer} alt="footer"/>
+        <img className={classes.footer_saly} src={saly} alt="saly"/>
       </Container>
     </div>
   );
