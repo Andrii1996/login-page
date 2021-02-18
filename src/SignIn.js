@@ -10,9 +10,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import logo from './img/logo.png';
 import footer from './img/footer.png';
 import saly from './img/saly.png';
+import salyy from './img/saly-2.png';
 import first from './img/first.png';
 import second from './img/second.png';
 import third from './img/third.png';
+import Saly from './img/Saly-12.png';
+import mobile from './img/mobile.png';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -29,8 +32,9 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '140px',
     },
     [theme.breakpoints.down('xs')]: {
-      marginTop: '30px',
-      width: '310px'
+      marginTop: '80px',
+      width: '330px',
+      height: '460px',
     },
   },
   form: {
@@ -68,7 +72,8 @@ const useStyles = makeStyles((theme) => ({
       height: '1024px',
     },
     [theme.breakpoints.down('xs')]: {
-      height: '667px'
+      height: '667px',
+      // position: 'relative',
     },
   },
   main_sub: {
@@ -97,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
       position: 'relative',
     },
     [theme.breakpoints.down('xs')]: {
-      width: '150px',
+      width: '180px',
       marginRight: '50px',
     },
   },
@@ -108,6 +113,10 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: '0',
     maxWidth: '1800px',
+    padding: '0',
+    [theme.breakpoints.down('xs')]: {
+      // position: 'relative',
+    },
   },
   footer_img: {
     width: '100%',
@@ -118,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
   footer_saly: {
     position: 'absolute',
     bottom: '0',
-    marginLeft: '-45%',
+    marginLeft: '-54%',
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     },
@@ -133,6 +142,26 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('xs')]: {
       display: 'none'
+    },
+  },
+  Saly: {
+    position: 'absolute',
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+      left: '30px'
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '100px',
+    },
+  },
+  footer_last: {
+    position: 'absolute',
+    display: 'none',
+    [theme.breakpoints.down('xs')]: {
+      bottom: '10px',
+      display: 'flex',
+      justifyContent: 'space-between'
     },
   }
 }));
@@ -174,6 +203,7 @@ export default function SignIn() {
   return (
     <div className={classes.main}>
       <div className={classes.main_sub}>
+        <img alt="Saly-12" src={Saly} className={classes.Saly}/>
         <Container maxWidth="xl" className={classes.logo}>
             <img className={classes.img} src={logo} alt="main logo"/>
           </Container>
@@ -221,7 +251,7 @@ export default function SignIn() {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body1">
+                  <Link href="#" variant="body5">
                     {"Don't have an account yet? Register"}
                   </Link>
                 </Grid>
@@ -237,6 +267,10 @@ export default function SignIn() {
           <img className={classes.footer_smallImg} src={first} alt="footer"/>
           <img className={classes.footer_smallImg} src={second} alt="footer"/>
           <img className={classes.footer_smallImg} src={third} alt="footer"/>
+        </Container>
+        <Container className={classes.footer_last}>
+          <img className={classes.footer_smallImg} src={mobile} alt="footer"/>
+          <img className={classes.footer_smallImg} src={salyy} alt="footer"/>
         </Container>
       </Container>
     </div>
