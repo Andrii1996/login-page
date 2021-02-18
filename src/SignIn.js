@@ -8,21 +8,25 @@ import {Button,
   Container
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import logo from './img/logo.png';
+import footer from './img/footer.png';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(30),
+    marginLeft: theme.spacing(10),
+    height: '526px',
+    width: '400px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    justifyContent: 'space-around',
+    background: 'rgba(254, 254, 254, 1)',
   },
   form: {
     width: '100%',
-    marginTop: theme.spacing(1),
+    padding: '0 25%',
+    textAlign: 'center',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -30,14 +34,31 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     width: '849px',
     height: '900px',
-    background: 'red',
-  },
-  img: {
-    // backgroundImage: URL('')
+    marginLeft: '-150px',
   },
   main: {
+    width: '1440px',
+    position: 'relative',
     display: 'flex',
+    background: '#e5e5e5',
   },
+  main_sub: {
+    width: '80%',
+    margin: '0 auto',
+    display: 'flex',
+    zIndex: '1',
+  },
+  err: {
+    color: 'red',
+  },
+  footer: {
+    position: 'absolute',
+    bottom: '0',
+    right: '185px'
+  },
+  footer_img: {
+    width: '1440px',
+  }
 }));
 
 export default function SignIn() {
@@ -58,83 +79,87 @@ export default function SignIn() {
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
 
     if (!email) {
+      event.preventDefault();
       setEmailErr('Email required')
       return;
     }
 
     if (!password) {
+      event.preventDefault();
       setPasswordErr('Email password')
       return;
     }
 
     alert(`Email - ${email}\nPassword - ${password}`);
+
   }
 
   return (
     <div className={classes.main}>
-      <div className={classes.logo}>
-        <img className={classes.img} src="./img/logo.png" alt="main logo"/>
+      <div className={classes.main_sub}>
+        <div className={classes.logo}>
+            <img className={classes.img} src={logo} alt="main logo"/>
+          </div>
+          <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Typography component="h1" variant="h5">
+              Login
+            </Typography>
+            <form className={classes.form} onSubmit={handleSubmit} noValidate>
+              <TextField
+                onChange={handleEmail}
+                variant="outlined"
+                margin="normal"
+                required
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+              />
+              <p className={classes.err}>{emailErr}</p>
+              <TextField
+                onChange={handlePassword}
+                variant="outlined"
+                margin="normal"
+                required
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+              <p className={classes.err}>{passwordErr}</p>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Log In
+              </Button>
+              <Grid container justify="center">
+                <Grid item>
+                  <Link href="#" variant="body1">
+                    Forgot your password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="#" variant="body1">
+                    {"Don't have an account yet? Register"}
+                  </Link>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        </Container>
       </div>
-      <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
-          <TextField
-            onChange={handleEmail}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <p>{emailErr}</p>
-          <TextField
-            onChange={handlePassword}
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <p>{passwordErr}</p>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+      <Container maxWidth="lg" className={classes.footer}>
+        <img className={classes.footer_img} src={footer} alt="footer"/>
+      </Container>
     </div>
   );
 }
